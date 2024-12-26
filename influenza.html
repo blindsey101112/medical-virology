@@ -7,8 +7,7 @@
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
+            margin: 20px;
             background-color: #f4f4f9;
             color: #333;
         }
@@ -33,12 +32,23 @@
 
         h2 {
             color: #004080;
-            border-bottom: 2px solid #004080;
-            padding-bottom: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e6e6f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            user-select: none;
         }
 
-        p {
-            margin: 10px 0;
+        .content {
+            margin: 0 0 20px 0;
+            padding: 0 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            display: none;
         }
 
         footer {
@@ -65,17 +75,30 @@
     </header>
 
     <section>
-        <h2>Overview</h2>
-        <p>Influenza viruses are enveloped, segmented, negative-sense RNA viruses belonging to the Orthomyxoviridae family.</p>
+        <h2 onclick="toggleContent('biology')">Biology</h2>
+        <div id="biology" class="content">
+            <p>The influenza virus is an enveloped, segmented, negative-sense RNA virus belonging to the Orthomyxoviridae family. It has eight RNA segments encoding 11 proteins, including haemagglutinin (HA) and neuraminidase (NA).</p>
+        </div>
 
-        <h2>Structure</h2>
-        <p>The virus has eight RNA segments and key proteins including haemagglutinin (HA) and neuraminidase (NA).</p>
+        <h2 onclick="toggleContent('epidemiology')">Epidemiology</h2>
+        <div id="epidemiology" class="content">
+            <p>Influenza is a global disease with seasonal epidemics. Influenza A affects humans, birds, and other mammals, while Influenza B predominantly affects humans. Pandemic potential is associated with antigenic shift in Influenza A.</p>
+        </div>
 
-        <h2>Clinical Features</h2>
-        <p>Influenza typically causes fever, cough, sore throat, muscle aches, and fatigue. Severe cases can lead to pneumonia.</p>
+        <h2 onclick="toggleContent('clinical')">Clinical Features</h2>
+        <div id="clinical" class="content">
+            <p>Symptoms include fever, cough, sore throat, muscle aches, fatigue, and headache. Severe cases can lead to pneumonia, respiratory failure, and death, particularly in the elderly and immunocompromised.</p>
+        </div>
 
-        <h2>Prevention and Treatment</h2>
-        <p>Annual vaccination is the primary preventive measure. Treatment includes antivirals such as oseltamivir and baloxavir.</p>
+        <h2 onclick="toggleContent('therapeutics')">Therapeutics</h2>
+        <div id="therapeutics" class="content">
+            <p>Treatment includes antivirals such as neuraminidase inhibitors (e.g., oseltamivir) and polymerase inhibitors (e.g., baloxavir). Early treatment reduces severity and duration.</p>
+        </div>
+
+        <h2 onclick="toggleContent('ipc')">Infection Prevention and Control</h2>
+        <div id="ipc" class="content">
+            <p>Prevention includes annual vaccination, hand hygiene, and respiratory etiquette. In healthcare settings, droplet and contact precautions are recommended.</p>
+        </div>
 
         <p><a href="index.html">Back to Home</a></p>
     </section>
@@ -83,5 +106,12 @@
     <footer>
         <p>Virology Revision Hub &bull; © 2024</p>
     </footer>
+
+    <script>
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            content.style.display = content.style.display === "none" || content.style.display === "" ? "block" : "none";
+        }
+    </script>
 </body>
 </html>
