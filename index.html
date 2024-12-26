@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virology Revision Hub</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            margin: 5px 0 15px;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .search-bar {
+            width: 60%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #004080;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .search-button {
+            padding: 15px 20px;
+            font-size: 16px;
+            background-color: #004080;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #00264d;
+        }
+
+        /* Results */
+        #results {
+            width: 80%;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 1.2em;
+        }
+
+        #results a {
+            text-decoration: none;
+            color: #0066cc;
+            transition: color 0.3s;
+        }
+
+        #results a:hover {
+            color: #004080;
+        }
+
+        #results p {
+            margin: 10px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Virology Revision Hub</h1>
+        <p>Your scientific resource for mastering virology</p>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search for viruses or clinical syndromes...">
+        <button class="search-button" onclick="search()">Search</button>
+    </div>
+
+    <div id="results"></div>
+
+    <footer>
+        <p>Created by [Your Name] &bull; © 2024</p>
+    </footer>
+
+    <script>
+        const data = {
+            "Influenza": "influenza.html",
+            "SARS-CoV-2": "sars-cov-2.html",
+            "Cytomegalovirus": "cmv.html",
+            "Epstein-Barr Virus": "ebv.html",
+            "HIV": "hiv.html",
+            "Viral Encephalitis": "encephalitis.html",
+            "Viral Hepatitis": "hepatitis.html"
+        };
+
+        function search() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            let found = false;
+            for (let key in data) {
+                if (key.toLowerCase().includes(input)) {
+                    resultsDiv.innerHTML += `<p><a href="${data[key]}">${key}</a></p>`;
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                resultsDiv.innerHTML = "<p>No results found. Try another term.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
