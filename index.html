@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virology Revision Hub</title>
+    <title>Medical Virology</title>
     <style>
         /* General Styles */
         body {
@@ -38,6 +38,7 @@
             display: flex;
             justify-content: center;
             margin: 40px 0;
+            position: relative;
         }
 
         .search-bar {
@@ -45,48 +46,32 @@
             padding: 15px;
             font-size: 16px;
             border: 2px solid #004080;
-            border-radius: 5px 0 0 5px;
+            border-radius: 5px;
             outline: none;
         }
 
-        .search-button {
-            padding: 15px 20px;
-            font-size: 16px;
-            background-color: #004080;
-            color: white;
-            border: none;
+        .suggestions {
+            position: absolute;
+            top: 50px;
+            width: 60%;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .suggestions p {
+            margin: 0;
+            padding: 10px;
             cursor: pointer;
-            border-radius: 0 5px 5px 0;
-            transition: background-color 0.3s;
         }
 
-        .search-button:hover {
-            background-color: #00264d;
+        .suggestions p:hover {
+            background-color: #f0f0f0;
         }
 
-        /* Results */
-        #results {
-            width: 80%;
-            margin: 0 auto;
-            text-align: left;
-            font-size: 1.2em;
-        }
-
-        #results a {
-            text-decoration: none;
-            color: #0066cc;
-            transition: color 0.3s;
-        }
-
-        #results a:hover {
-            color: #004080;
-        }
-
-        #results p {
-            margin: 10px 0;
-        }
-
-        /* Footer */
         footer {
             background-color: #004080;
             color: white;
@@ -101,22 +86,21 @@
 </head>
 <body>
     <header>
-        <h1>Virology Revision Hub</h1>
-        <p>Your scientific resource for mastering virology</p>
+        <h1>Medical Virology</h1>
+        <p>Your comprehensive guide to understanding viruses and their clinical impact</p>
     </header>
 
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-bar" placeholder="Search for viruses or clinical syndromes...">
-        <button class="search-button" onclick="search()">Search</button>
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search for viruses or clinical syndromes..." oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
     </div>
-
-    <div id="results"></div>
 
     <footer>
         <p>Created by [Your Name] &bull; © 2024</p>
     </footer>
 
     <script>
+        // Data for available pages
         const data = {
             "Influenza": "influenza.html",
             "SARS-CoV-2": "sars-cov-2.html",
@@ -127,21 +111,23 @@
             "Viral Hepatitis": "hepatitis.html"
         };
 
-        function search() {
+        // Function to display suggestions as you type
+        function showSuggestions() {
             const input = document.getElementById("searchInput").value.toLowerCase();
-            const resultsDiv = document.getElementById("results");
-            resultsDiv.innerHTML = "";
+            const suggestionsDiv = document.getElementById("suggestions");
+            suggestionsDiv.innerHTML = "";
 
-            let found = false;
-            for (let key in data) {
-                if (key.toLowerCase().includes(input)) {
-                    resultsDiv.innerHTML += `<p><a href="${data[key]}">${key}</a></p>`;
-                    found = true;
+            if (input) {
+                for (let key in data) {
+                    if (key.toLowerCase().includes(input)) {
+                        const suggestion = document.createElement("p");
+                        suggestion.textContent = key;
+                        suggestion.onclick = () => {
+                            window.location.href = data[key];
+                        };
+                        suggestionsDiv.appendChild(suggestion);
+                    }
                 }
-            }
-
-            if (!found) {
-                resultsDiv.innerHTML = "<p>No results found. Try another term.</p>";
             }
         }
     </script>
