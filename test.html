@@ -24,17 +24,19 @@
         section {
             margin: 20px auto;
             width: 80%;
-            line-height: 1.6;
         }
         h2 {
             color: #004080;
+            cursor: pointer;
             margin: 10px 0;
             padding: 10px;
             background-color: #e6e6f0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            user-select: none;
         }
         .content {
+            display: none;
             margin: 10px 0;
             padding: 10px;
             background-color: #fff;
@@ -68,8 +70,9 @@
         <h1>Influenza Virus</h1>
     </header>
     <section>
-        <h2>Biology</h2>
-        <div class="content">
+        <!-- Biology Section -->
+        <h2 onclick="toggleSection('biology')">Biology</h2>
+        <div id="biology" class="content">
             <p>The influenza virus is an RNA virus of the Orthomyxoviridae family.</p>
             <div class="detailed">
                 <p>The virus is enveloped, segmented, and negative-sense. It has eight RNA segments encoding 11 proteins, including haemagglutinin (HA) and neuraminidase (NA).</p>
@@ -77,11 +80,57 @@
             <button class="toggle-btn" onclick="toggleDetail(this)">Show More</button>
         </div>
 
-        <h2>Epidemiology</h2>
-        <div class="content">
+        <!-- Epidemiology Section -->
+        <h2 onclick="toggleSection('epidemiology')">Epidemiology</h2>
+        <div id="epidemiology" class="content">
             <p>Influenza is a global disease with seasonal epidemics.</p>
             <div class="detailed">
                 <p>Influenza A affects humans, birds, and other mammals, while Influenza B predominantly affects humans. Pandemic potential arises from antigenic shifts in Influenza A.</p>
+            </div>
+            <button class="toggle-btn" onclick="toggleDetail(this)">Show More</button>
+        </div>
+
+        <!-- Clinical Features Section -->
+        <h2 onclick="toggleSection('clinical')">Clinical Features</h2>
+        <div id="clinical" class="content">
+            <p>Symptoms include fever, cough, sore throat, muscle aches, fatigue, and headache.</p>
+            <div class="detailed">
+                <p>Severe cases can lead to pneumonia, respiratory failure, and death, particularly in the elderly and immunocompromised.</p>
+            </div>
+            <button class="toggle-btn" onclick="toggleDetail(this)">Show More</button>
+        </div>
+
+        <!-- Diagnostics Section -->
+        <h2 onclick="toggleSection('diagnostics')">Diagnostics</h2>
+        <div id="diagnostics" class="content">
+            <p>Common diagnostics include Rapid Antigen Tests and PCR.</p>
+            <div class="detailed">
+                <ul>
+                    <li><strong>Rapid Antigen Detection Tests</strong> (RADTs): Fast but less sensitive.</li>
+                    <li><strong>Polymerase Chain Reaction (PCR):</strong> Highly sensitive and specific, considered the gold standard.</li>
+                    <li><strong>Viral Culture:</strong> Rarely used due to time constraints.</li>
+                    <li><strong>Serology:</strong> Retrospective diagnosis and epidemiology.</li>
+                </ul>
+            </div>
+            <button class="toggle-btn" onclick="toggleDetail(this)">Show More</button>
+        </div>
+
+        <!-- Therapeutics Section -->
+        <h2 onclick="toggleSection('therapeutics')">Therapeutics</h2>
+        <div id="therapeutics" class="content">
+            <p>Treatment includes antivirals such as oseltamivir and baloxavir.</p>
+            <div class="detailed">
+                <p>Early treatment reduces severity and duration. Antiviral resistance monitoring is crucial.</p>
+            </div>
+            <button class="toggle-btn" onclick="toggleDetail(this)">Show More</button>
+        </div>
+
+        <!-- Infection Prevention and Control Section -->
+        <h2 onclick="toggleSection('ipc')">Infection Prevention and Control</h2>
+        <div id="ipc" class="content">
+            <p>Prevention includes annual vaccination and hand hygiene.</p>
+            <div class="detailed">
+                <p>In healthcare settings, droplet and contact precautions are recommended. Respiratory etiquette helps reduce transmission.</p>
             </div>
             <button class="toggle-btn" onclick="toggleDetail(this)">Show More</button>
         </div>
@@ -90,6 +139,11 @@
         <p>Medical Virology &bull; © 2024</p>
     </footer>
     <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.style.display = section.style.display === "none" || section.style.display === "" ? "block" : "none";
+        }
+
         function toggleDetail(button) {
             const detailedContent = button.previousElementSibling;
             if (detailedContent.style.display === "none" || detailedContent.style.display === "") {
