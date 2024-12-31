@@ -103,7 +103,7 @@
     <script>
         // Data for available pages
         const data = {
-            "Influenza": "influenza.html",
+            "Influenza": "/medical-virology/pages/influenza.html",
             "SARS-CoV-2": "sars-cov-2.html",
             "Cytomegalovirus": "cmv.html",
             "Epstein-Barr Virus": "ebv.html",
@@ -124,10 +124,7 @@
                         const suggestion = document.createElement("p");
                         suggestion.textContent = key;
                         suggestion.onclick = () => {
-                            const baseUrl = window.location.origin + "medical-virology/pages/";
-                            const targetUrl = baseUrl + data[key].split("/").pop(); // Extract filename
-                            console.log(`Redirecting to: ${targetUrl}`);
-                            window.location.href = targetUrl;
+                            window.location.href = data[key];
                         };
                         suggestionsDiv.appendChild(suggestion);
                     }
