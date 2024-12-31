@@ -116,7 +116,7 @@
         function showSuggestions() {
             const input = document.getElementById("searchInput").value.toLowerCase();
             const suggestionsDiv = document.getElementById("suggestions");
-            suggestionsDiv.innerHTML = "/pages/";
+            suggestionsDiv.innerHTML = "";
 
             if (input) {
                 for (let key in data) {
@@ -126,7 +126,7 @@
                         suggestion.onclick = () => {
                             window.location.href = data[key];
                         };
-                        suggestionsDiv.appendChild(suggestion);
+                        suggestionsDiv.appendChild("/pages/", suggestion);
                     }
                 }
             }
