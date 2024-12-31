@@ -124,9 +124,12 @@
                         const suggestion = document.createElement("p");
                         suggestion.textContent = key;
                         suggestion.onclick = () => {
-                            window.location.href = data[key];
+                            const baseUrl = window.location.origin + "/pages/";
+                            const targetUrl = baseUrl + data[key].split("/").pop(); // Extract filename
+                            console.log(`Redirecting to: ${targetUrl}`);
+                            window.location.href = targetUrl;
                         };
-                        suggestionsDiv.appendChild("/pages/", suggestion);
+                        suggestionsDiv.appendChild(suggestion);
                     }
                 }
             }
