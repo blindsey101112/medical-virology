@@ -124,7 +124,7 @@
                         const suggestion = document.createElement("p");
                         suggestion.textContent = key;
                         suggestion.onclick = () => {
-                            const baseUrl = window.location.origin + "/pages/";
+                            const baseUrl = window.location.origin + "medical-virology/pages/";
                             const targetUrl = baseUrl + data[key].split("/").pop(); // Extract filename
                             console.log(`Redirecting to: ${targetUrl}`);
                             window.location.href = targetUrl;
